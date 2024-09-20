@@ -30,44 +30,31 @@ install_gcc() {
     echo "Compilador de C instalado correctamente."
 }
 
-install_csharp() {
-    echo "Instalando .NET SDK para C#..."
+install_java() {
+    echo "Instalando Java (OpenJDK)..."
 
-    # Ubuntu, Debian, Kali y distribuciones basadas en APT
+    # Comprobamos si estamos en un sistema basado en Ubuntu o Debian
     if command -v apt >/dev/null; then
         sudo apt update
-        sudo apt install -y dotnet-sdk-6.0
-    
-    # Fedora y otras distribuciones basadas en DNF
-    elif command -v dnf >/dev/null; then
-        sudo dnf install dotnet-sdk-6.0 -y
-    
-    # CentOS y distribuciones basadas en YUM
-    elif command -v yum >/dev/null; then
-        sudo yum install dotnet-sdk-6.0 -y
-    
-    # Arch Linux y distribuciones basadas en Pacman
+        sudo apt install default-jdk -y
+    # Comprobamos si estamos en un sistema basado en Fedora o CentOS
+    elif command -v dnf >/dev/null || command -v yum >/dev/null; then
+        if command -v dnf >/dev/null; then
+            package_manager="dnf"
+        else
+            package_manager="yum"
+        fi
+        sudo $package_manager install java-11-openjdk-devel -y  # Puedes cambiar 11 por la versión deseada
+    # Comprobamos si estamos en un sistema basado en Arch Linux
     elif command -v pacman >/dev/null; then
-        sudo pacman -S dotnet-sdk --noconfirm
-    
-    # Si no se detecta ningún gestor de paquetes compatible
+        sudo pacman -Syu java-openjdk --noconfirm
+    # Para otras distribuciones, recomendamos consultar la documentación oficial
     else
-        echo "No se pudo detectar el gestor de paquetes compatible para instalar C#."
+        echo "No se pudo detectar el gestor de paquetes compatible. Consulta la documentación de tu distribución para obtener instrucciones específicas."
         return 1
     fi
 
-    echo ".NET SDK para C# instalado correctamente."
-}
-
-
-install_gpp() {
-    # Implementar función de instalación de C++ aquí
-    echo "Función de instalación de C++ no implementada."
-}
-
-install_java() {
-    # Implementar función de instalación de Java aquí
-    echo "Función de instalación de Java no implementada."
+    echo "Java instalado correctamente."
 }
 
 install_go() {
@@ -76,8 +63,30 @@ install_go() {
 }
 
 install_node() {
-    # Implementar función de instalación de Node.js aquí
-    echo "Función de instalación de Node.js no implementada."
+    echo "Instalando Node.js..."
+
+    # Comprobamos si estamos en un sistema basado en Debian o Ubuntu
+    if command -v apt >/dev/null; then
+        sudo apt update
+        sudo apt install nodejs -y
+    # Comprobamos si estamos en un sistema basado en Fedora o CentOS
+    elif command -v dnf >/dev/null || command -v yum >/dev/null; then
+        if command -v dnf >/dev/null; then
+            package_manager="dnf"
+        else
+            package_manager="yum"
+        fi
+        sudo $package_manager install nodejs -y
+    # Comprobamos si estamos en un sistema basado en Arch Linux
+    elif command -v pacman >/dev/null; then
+        sudo pacman -Syu nodejs --noconfirm
+    # Para otras distribuciones, recomendamos consultar la documentación oficial
+    else
+        echo "No se pudo detectar el gestor de paquetes compatible. Consulta la documentación de tu distribución para obtener instrucciones específicas."
+        return 1
+    fi
+
+    echo "Node.js instalado correctamente."
 }
 
 install_r() {
@@ -91,22 +100,42 @@ install_ruby() {
 }
 
 install_swift() {
-    # Implementar función de instalación de Swift aquí
-    echo "Función de instalación de Swift no implementada."
+    echo "Instalando Swift..."
+
+    # Comprobamos si estamos en un sistema basado en Ubuntu o Debian
+    if command -v apt >/dev/null; then
+        sudo apt update
+        sudo apt install swift -y
+    # Comprobamos si estamos en un sistema basado en Fedora o CentOS
+    elif command -v dnf >/dev/null || command -v yum >/dev/null; then
+        if command -v dnf >/dev/null; then
+            package_manager="dnf"
+        else
+            package_manager="yum"
+        fi
+        sudo $package_manager install swift -y
+    # Comprobamos si estamos en un sistema basado en Arch Linux
+    elif command -v pacman >/dev/null; then
+        sudo pacman -Syu swift --noconfirm
+    # Para otras distribuciones, recomendamos instalar Swift desde los paquetes oficiales
+    else
+        echo "No se pudo detectar el gestor de paquetes compatible. Consulta la documentación oficial de Swift para obtener instrucciones específicas de instalación: https://swift.org/install/"
+        return 1
+    fi
+
+    echo "Swift instalado correctamente."
 }
 
 # Menú principal
 while true; do
     echo "Elija una opción:"
     echo "1) C"
-    echo "2) C#"
-    echo "3) C++"
-    echo "4) Golang"
-    echo "5) Java"
-    echo "6) Node.js"
-    echo "7) R"
-    echo "8) Ruby"
-    echo "9) Swift"
+    echo "2) Golang"
+    echo "3) Java"
+    echo "4) Node.js"
+    echo "5) R"
+    echo "6) Ruby"
+    echo "7) Swift"
     echo "10) Salir"
     echo "0) Volver al menú principal"
     
@@ -115,21 +144,17 @@ while true; do
     case "$option" in
         1) install_gcc
             ;;
-        2) install_csharp
+        2) install_go
             ;;
-        3) install_gpp
+        3) install_java
             ;;
-        4) install_go
+        4) install_node
             ;;
-        5) install_java
+        5) install_r
             ;;
-        6) install_node
+        6) install_ruby
             ;;
-        7) install_r
-            ;;
-        8) install_ruby
-            ;;
-        9) install_swift
+        7) install_swift
             ;;
         10) 
             echo "Saliendo..."
