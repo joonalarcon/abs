@@ -7,7 +7,7 @@ while true; do
     echo "1) Actualizar lista de paquetes (update)"
     echo "2) Actualizar paquetes (upgrade)"
     echo "3) Instalar neofetch"
-    echo "4) Salir"
+    echo "10) Salir"
     echo "0) Volver al menu principal"
     read -p "Ingrese una opción: " option
 
@@ -27,7 +27,7 @@ while true; do
             sudo apt install neofetch -y
             echo "neofetch instalado."
             ;;
-        4) 
+        10) 
             echo "Saliendo..."
             exit 0
             ;;

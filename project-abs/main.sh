@@ -15,11 +15,11 @@ echo -e "${rojo}--Swissknife--${reset}"
 while true; do
     echo -e "${amarillo}----------------------------${reset}"
     echo -e "${amarillo}----------------------------${reset}"
-    echo "1) Instalacion de programas"
+    echo -e "${verde}1) Instalacion de programas"
     echo "2) Instalacion de lenguajes de programacion"
     echo "3) Administracion de usuarios"
     echo "4) Personalizacion de terminal"
-    echo "5) Salir del programa"
+    echo -e "5) Salir del programa${verde}"
     echo -e "${amarillo}----------------------------${reset}"
     echo -e "${amarillo}----------------------------${reset}"
 
@@ -33,6 +33,7 @@ while true; do
             ;;
         2) 
             echo "Instalacion de lenguajes de programacion"
+            source ./instalacion_lenguajes_progracion.sh
             break
             ;;
         3) 
@@ -50,7 +51,7 @@ while true; do
             ;;
         *) 
             echo "Opcion no valida, intenta nuevamente"
-            # Salir del bucle después de un solo intento
+            
             exec "$0"
             ;;
     esac
