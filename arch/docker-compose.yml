@@ -1,0 +1,8 @@
+services:
+  myservice:
+    build: .
+    volumes:
+      - ~/Desktop/project/project-abs:/home
+    stdin_open: true
+    tty: true
+
