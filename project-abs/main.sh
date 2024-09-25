@@ -15,10 +15,11 @@ echo -e "${rojo}--Swissknife--${reset}"
 while true; do
     echo -e "${amarillo}----------------------------${reset}"
     echo -e "${amarillo}----------------------------${reset}"
-    echo -e "${verde}1) Instalacion de programas"
-    echo "2) Instalacion de lenguajes de programacion"
-    echo "3) Administracion de usuarios"
-    echo "4) Personalizacion de terminal"
+    echo -e "${verde}1) Instalación de programas"
+    echo "2) Instalaciòn de lenguajes de programación"
+    echo "3) Administración de usuarios"
+    echo "4) Personalización de terminal"
+    echo "5) Instalación de bases de datos"
     echo -e "5) Salir del programa${verde}"
     echo -e "${amarillo}----------------------------${reset}"
     echo -e "${amarillo}----------------------------${reset}"
@@ -27,23 +28,28 @@ while true; do
 
     case "$option" in
         1) 
-            echo "Instalacion de programas"
+            echo "Instalación de programas"
+            clear
             source ./instalacion_programas.sh
             break
             ;;
         2) 
-            echo "Instalacion de lenguajes de programacion"
+            echo "Instalación de lenguajes de programación"
             source ./instalacion_lenguajes_progracion.sh
             break
             ;;
         3) 
-            echo "Administracion de usuarios"
+            echo "Administración de usuarios"
             break
             ;;
             
-        4)  echo "Personalizacion de terminal"
+        4)  echo "Personalización de terminal"
             source ./personalizacion_terminal.sh
             break 
+            ;;
+
+        5)  echo "Instalación de bases de datos"
+            source ./instalacion_bases_datos.sh
             ;;
 
         0)  echo "Saliendo..."

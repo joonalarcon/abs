@@ -1,0 +1,13 @@
+    BINDINGS = [
+        ("d", "toggle_dark", "Toggle dark mode"),
+        ("q", "quit", "Quit application")  # Añadido binding para salir
+    ]
+
+
+def action_toggle_dark(self) -> None:
+  """An action to toggle dark mode."""
+  self.dark = not self.dark
+
+def action_quit(self) -> None:
+  """An action to quit the application."""
+  self.exit()  # Sale de la aplicación

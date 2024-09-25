@@ -1,0 +1,17 @@
+#titulo-update-upgrade {
+    color: green;
+    content-align: center middle;
+    text-style: bold;
+}
+
+.update-upgrade {
+    background: #A9822E;  
+    color: white;
+    border: heavy white;
+    width: 50%;
+}
+
+.update-upgrade:hover {
+    background: blue;
+    text-style: bold;
+}

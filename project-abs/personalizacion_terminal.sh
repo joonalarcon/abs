@@ -1,59 +1,64 @@
 #!/bin/bash
 
-echo "Bienvenido al menú de personalización de la terminal"
+# Definir variables de color
+rojo="\033[0;31m"
+verde="\033[0;32m"
+amarillo="\033[0;33m"
+azul="\033[0;34m"
+magenta="\033[0;35m"
+cian="\033[0;36m"
+blanco="\033[0;37m"
+reset="\033[0m"  # Para resetear el color
 
+echo -e "${cian}Bienvenido -- Personalizador de Terminal${reset} "
+echo -e "${rojo}--TerminalCustomizer--${reset}"
 while true; do
-    echo "Elija una opción:"
-    echo "1) Instalar Zsh y establecer como shell predeterminado"
-    echo "9) Volver al menú principal"
-    echo "0) Salir del programa"
+    echo -e "${amarillo}----------------------------${reset}"
+    echo -e "${amarillo}----------------------------${reset}"
+    echo -e "${verde}1) Cambiar el tema de tmux"
+    echo "2) Modificar .zshrc para Oh My Zsh"
+    echo "3) Cambiar el prompt de la terminal"
+    echo "4) Configurar alias de comandos"
+    echo "5) Editar el archivo de configuración de bash"
+    echo -e "0) Salir del programa${verde}"
+    echo -e "${amarillo}----------------------------${reset}"
+    echo -e "${amarillo}----------------------------${reset}"
+
     read -p "Ingrese una opción: " option
 
     case "$option" in
-        1)  echo "Instalando Zsh..."
-            install_zsh            
+        1) 
+            echo "Cambiando el tema de tmux..."
+            # Aquí debes agregar el comando o script para cambiar el tema de tmux
             ;;
-        
-        2)  echo "Instalacion de OH My Zsh!"
-            install_oh_my_zsh
+        2) 
+            echo "Modificando .zshrc para Oh My Zsh..."
+            # Aquí debes agregar el comando o script para modificar .zshrc
             ;;
-
-        9)  echo "Volviendo al menú principal"
-            source ./main.sh
+        3) 
+            echo "Cambiando el prompt de la terminal..."
+            # Aquí debes agregar el comando o script para cambiar el prompt
             ;;
-
-        0)  echo "Saliendo"
+        4) 
+            echo "Configurando alias de comandos..."
+            # Aquí debes agregar el comando o script para configurar alias
+            ;;
+        5) 
+            echo "Editando el archivo de configuración de bash..."
+            # Aquí debes agregar el comando o script para editar el archivo de configuración de bash
+            ;;
+        0)  
+            echo "Saliendo..."
             exit 0
             ;;
 
-        *)  echo "Opción no válida, intenta nuevamente."
+        10) source ./main.sh
+            ;;
+        *) 
+            echo "Opción no válida, intenta nuevamente"
             ;;
     esac
 done
 
-
-
-
-# instalacion de zsh
-install_zsh() {
-    if command -v apt &>/dev/null; then
-        sudo apt update
-        sudo apt install -y zsh
-    elif command -v yum &>/dev/null; then
-        sudo yum install -y zsh
-    elif command -v dnf &>/dev/null; then
-        sudo dnf install -y zsh
-    else
-        echo "Gestor de paquetes no soportado."
-        exit 1
-
-    fi
-}
-
-
-# Instalacion de oh my Zsh
-install_oh_my_zsh() {
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
 
 
